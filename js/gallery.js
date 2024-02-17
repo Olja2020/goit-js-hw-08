@@ -69,8 +69,8 @@ const images = [
 const listGallery = document.querySelector(".gallery");
 for (const image of images) {
   const { preview, original, description } = image;
-
-  const itemGallery = (image.innerHTML = `<li class="gallery-item">
+  
+  const itemGallery = (listGallery.innerHTML = `<li class="gallery-item">
        <a class="gallery-link" href="${original}">
         <img
            class="gallery-image"
@@ -80,13 +80,39 @@ for (const image of images) {
          />
        </a>
     </li>`);
-
-  listGallery.insertAdjacentHTML("beforeend", itemGallery);
+console.log(itemGallery);
+  
+  // const itemGallery = images
+  //   .map((image) => `<li class="gallery-item">
+  //      <a class="gallery-link" href="${original}">
+  //         <img
+  //            class="gallery-image"
+  //            src="${preview}"
+  //           data-source="${original}"
+  //           alt="${description}"
+  //         />
+  //        </a>
+  //     </li>`)
+  //   .join("");
+//     const array = [];
+//     const itemGallery = (array.innerHTML = `<li class="gallery-item">
+//     <a class="gallery-link" href="${original}">
+//      <img
+//         class="gallery-image"
+//         src="${preview}"
+//         data-source="${original}"
+//         alt="${description}"
+//       />
+//     </a>
+//  </li>`)
+//       .join("");
+  const a=listGallery.insertAdjacentHTML("beforeend", itemGallery);
+  console.log(a);
 }
 
-listGallery.addEventListener("click", showOrigrnalImage);
+listGallery.addEventListener("click", showOriginalImage);
 
-function showOrigrnalImage(event) {
+function showOriginalImage(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
@@ -96,7 +122,7 @@ function showOrigrnalImage(event) {
   basicLightbox
     .create(
       `
-<img width="1400" height="900" src=${imageHref}>
+<img src=${imageHref}>
 `
     )
     .show();
