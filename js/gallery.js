@@ -69,48 +69,25 @@ const images = [
 const listGallery = document.querySelector(".gallery");
 for (const image of images) {
   const { preview, original, description } = image;
-  
-  const itemGallery = (listGallery.innerHTML = `<li class="gallery-item">
-       <a class="gallery-link" href="${original}">
+  const itemGallery = document.createElement("li");
+  itemGallery.classList.add("gallery-item");
+  itemGallery.innerHTML = 
+       `<a class="gallery-link" href="${original}">
         <img
            class="gallery-image"
            src="${preview}"
            data-source="${original}"
            alt="${description}"
          />
-       </a>
-    </li>`);
-console.log(itemGallery);
+       </a>`;
+ 
+  listGallery.appendChild(itemGallery);
   
-  // const itemGallery = images
-  //   .map((image) => `<li class="gallery-item">
-  //      <a class="gallery-link" href="${original}">
-  //         <img
-  //            class="gallery-image"
-  //            src="${preview}"
-  //           data-source="${original}"
-  //           alt="${description}"
-  //         />
-  //        </a>
-  //     </li>`)
-  //   .join("");
-//     const array = [];
-//     const itemGallery = (array.innerHTML = `<li class="gallery-item">
-//     <a class="gallery-link" href="${original}">
-//      <img
-//         class="gallery-image"
-//         src="${preview}"
-//         data-source="${original}"
-//         alt="${description}"
-//       />
-//     </a>
-//  </li>`)
-//       .join("");
-  const a=listGallery.insertAdjacentHTML("beforeend", itemGallery);
-  console.log(a);
 }
 
 listGallery.addEventListener("click", showOriginalImage);
+
+
 
 function showOriginalImage(event) {
   event.preventDefault();
@@ -127,3 +104,4 @@ function showOriginalImage(event) {
     )
     .show();
 }
+
